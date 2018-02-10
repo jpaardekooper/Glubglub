@@ -37,24 +37,28 @@ namespace Glubglub
 
 
             //output for the grid
-            for (int j = 0; j < grid.GetLength(0); j++)
+            for (int x = 0; x < grid.GetLength(0); x++)
             {
-
-                if (j < 10)
+                if (x < 10)
                 {
-                    Console.Write(" ".PadLeft(1) + (j));
+                    Console.Write(x + " ".PadLeft(1));
                 }
                 else
                 {
-                    Console.Write(j);
+                    Console.Write(x);
                 }
-                //Console.Write( "row".PadRight(10, '.'));
-
-                for (int i = 0; i < grid.GetLength(1); i++)
+                for (int y = 0; y < grid.GetLength(1); y++)
                 {
-                    Console.Write(" " + (i + 1));
+                    if (x == 0)
+                    {
+                        Console.Write(" " + (y + 1));
+                    }
+                    //Verkeers object characters 
+                    else
+                    {
+                        Console.Write(" " + (y + 1));
+                    }
                 }
-
                 Console.WriteLine();
             }
         }
