@@ -20,11 +20,11 @@ namespace Glubglub
 
             // Two-dimensional array.
             // The first number indicates the number of columns, the second is the number of rows
-            int[,] grid = new int[20, 20];
+            int[,] grid = new int[21, 20];
 
-            grid[2, 2] = 1; // center
+            grid[10, 10] = 1; // center
 
-            //filling grid
+            /*//filling grid
             for (int i = 1; i < 4; i++) // fourth row
             {
                 grid[i, 3] = 1;
@@ -33,15 +33,28 @@ namespace Glubglub
             for (int i = 0; i < 5; i++) // the last row
             {
                 grid[i, 4] = 1;
-            }
+            }*/
+
 
             //output for the grid
-            for (int j = 0; j < grid.GetLength(1); j++)
+            for (int j = 0; j < grid.GetLength(0); j++)
             {
-                for (int i = 0; i < grid.GetLength(0); i++)
+
+                if (j < 10)
                 {
-                    Console.Write(" " + grid[i, j]);
+                    Console.Write(" ".PadLeft(1) + (j));
                 }
+                else
+                {
+                    Console.Write(j);
+                }
+                //Console.Write( "row".PadRight(10, '.'));
+
+                for (int i = 0; i < grid.GetLength(1); i++)
+                {
+                    Console.Write(" " + (i + 1));
+                }
+
                 Console.WriteLine();
             }
         }
@@ -50,7 +63,7 @@ namespace Glubglub
     class Verkeersobject
     {
         public char karakter { get; set; }
-        public int richting { get; set; }
+        public int kijkrichting { get; set; }
     }
 
     class Dynamisch : Verkeersobject
