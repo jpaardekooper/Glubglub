@@ -6,6 +6,11 @@ namespace Glubglub
     {
         static void Main(string[] args)
         {
+
+            Verkeersobject test = new Verkeersobject();
+
+            Console.Write("rnd" + test.kijkrichting + " ");
+
             /*
             1.Maak een nieuw project(console) voor de opdracht verkeer. Bewaar deze voor de rest van de UML Practica
             2.Programmeer straks het hele diagram uit.Hierbij geldt:
@@ -20,34 +25,24 @@ namespace Glubglub
 
             // Two-dimensional array.
             // The first number indicates the number of columns, the second is the number of rows
-            int[,] grid = new int[21, 20];
+            int[,] grid = new int[20, 21];
 
-            grid[10, 10] = 1; // center
-
-            /*//filling grid
-            for (int i = 1; i < 4; i++) // fourth row
-            {
-                grid[i, 3] = 1;
-            }
-            //filling grid
-            for (int i = 0; i < 5; i++) // the last row
-            {
-                grid[i, 4] = 1;
-            }*/
+            grid[10, 10] = 1; // center         
 
 
             //output for the grid
-            for (int x = 0; x < grid.GetLength(0); x++)
+            for (int x = 0; x < grid.GetLength(1); x++)
             {
-                if (x < 10)
+                if (x < 10 && x > 0)
                 {
-                    Console.Write(x + " ".PadLeft(1));
+                    Console.Write(x + " ".PadRight(1));
                 }
                 else
                 {
                     Console.Write(x);
                 }
-                for (int y = 0; y < grid.GetLength(1); y++)
+
+                for (int y = 0; y < grid.GetLength(0); y++)
                 {
                     if (x == 0)
                     {
@@ -61,13 +56,63 @@ namespace Glubglub
                 }
                 Console.WriteLine();
             }
+
+            Console.WriteLine("test");
+            Console.WriteLine("test");
+            Console.WriteLine("test");
+            Console.WriteLine("test");
+
+            //filling grid
+            for (int i = 1; i < 4; i++) // fourth row
+            {
+                grid[i, 3] = 1;
+            }
+            //filling grid
+            for (int i = 0; i < 5; i++) // the last row
+            {
+                grid[i, 4] = 1;
+            }
+
+            //output for the grid
+            for (int j = 0; j < grid.GetLength(1); j++)
+            {
+                if (j < 10 && j > 0)
+                {
+                    Console.Write(j + " ".PadRight(1));
+                }
+                else
+                {
+                    Console.Write(j);
+                }
+                for (int i = 0; i < grid.GetLength(0); i++)
+                {
+                    if (j == 0)
+                    {
+                        Console.Write(" " + (i + 1));
+                    }
+                    //Verkeers object characters 
+                    else
+                    {
+                        Console.Write(" " + grid[i, j]);
+                    }
+                }
+                Console.WriteLine();
+            }
         }
     }
-
-    class Verkeersobject
+    public static class Utils
     {
+        public static readonly Random random = new Random();
+    }
+
+    public class Verkeersobject
+    {
+        public Verkeersobject()
+        {
+            kijkrichting = Utils.random.Next(1,4);
+        }
+        public int kijkrichting { get; private set; }
         public char karakter { get; set; }
-        public int kijkrichting { get; set; }
     }
 
     class Dynamisch : Verkeersobject
@@ -137,10 +182,31 @@ namespace Glubglub
 
     class Stopbord : Statisch
     {
+        public Stopbord() : base()
+        {
+            karakter = 'x';
+
+        }
 
     }
+    class Voorangsbord : Statisch
+    {
+        public Voorangsbord() : base()
+        {
+            karakter = '+';
 
-    // nog 2 borden
+        }
+    }
+    class Stoplicht : Statisch
+    {
+        public Stoplicht() : base()
+        {
+            karakter = '-';
+
+        }
+    }
+
+
 }
 
 
