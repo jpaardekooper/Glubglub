@@ -31,24 +31,27 @@ namespace Glubglub
             // Two-dimensional array.
             // The first number indicates the number of columns, the second is the number of rows
    
-            object[,] grid = new object[20, 21];
+            object[,] grid = new object[21, 20];
 
             grid[10, 10] = '1'; // center  
 
 
             //filling grid
-            for (int i = 1; i < 20; i++) // fourth row
+            for (int j = 1; j < grid.GetLength(0); j++) // fourth row
             {
-                grid[i, 3] = voorrang.karakter;
+                grid[j, 0] = voorrang.karakter;
             }
             //filling grid
-            for (int i = 0; i < 5; i++) // the fifth row
+            for (int j = 0; j < grid.GetLength(1); j++) // the fifth row
             {
-                grid[i, 4] = stoplicht.karakter;
+                for (int i = 1; i < grid.GetLength(0); i++) // fourth row
+                {
+                    grid[i, 8] = voorrang.karakter;
+                }
             }
 
             //output for the grid
-            for (int j = 0; j < grid.GetLength(1); j++)
+            for (int j = 0; j < grid.GetLength(0); j++)
             {              
                 if (j < 10 && j > 0)
                 {
@@ -58,7 +61,7 @@ namespace Glubglub
                 {
                     Console.Write(j);
                 }
-                for (int i = 0; i < grid.GetLength(0); i++)
+                for (int i = 0; i < grid.GetLength(1); i++)
                 {
                     if (j == 0)
                     {
@@ -67,8 +70,51 @@ namespace Glubglub
                     //Verkeers object characters 
                     else
                     {
-                        Console.Write(" ".PadLeft(2) + grid[i, j]);
+                        Console.Write(" ".PadLeft(2) + grid[j,i] );
                     }
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+
+            Employee[,] empArray = new Employee[11, 10];
+
+            empArray[1, 3] = new Employee("S", 3);
+            empArray[4, 1] = new Employee("A", 9);
+
+            Console.WriteLine("empArray.Rank (number of dimensions) = " + empArray.Rank);
+            Console.WriteLine("empArray.Length (number of elements) = " + empArray.Length);
+
+            for (int x = 0; x < empArray.GetLength(0); x++)
+            {
+                Console.Write(x);
+                for (int y = 0; y < empArray.GetLength(1); y++)
+                {
+                   
+
+                    if (empArray[x, y] != null)
+                    {
+                        
+                        Console.Write("empArray[" + x + ", " + y + "].name = " + empArray[x, y].name);
+                        Console.Write("empArray[" + x + ", " + y + "].no = " + empArray[x, y].no);
+                    }
+                    else
+                    {
+                        if (x == 0)
+                        {
+                            Console.Write(" ".PadLeft(2) + (y+1));
+                        }
+                        else
+                        {
+                            Console.Write("-" + empArray[x, y]);
+                        }
+                       
+                    }
+                    
                 }
                 Console.WriteLine();
             }
@@ -83,9 +129,9 @@ namespace Glubglub
     {
         public Verkeersobject()
         {
-            kijkrichting = Utils.random.Next(1,4);
+            richting = Utils.random.Next(1,4);
         }
-        public int kijkrichting { get; private set; }
+        public int richting { get; private set; }
         public char karakter { get; set; }
     }
 
@@ -165,7 +211,7 @@ namespace Glubglub
     {
         public Stopbord() : base()
         {
-            karakter = 'x';
+            karakter = 's';
         }
 
     }
@@ -173,7 +219,7 @@ namespace Glubglub
     {
         public Voorangsbord() : base()
         {
-            karakter = '+';
+            karakter = 'v';
 
         }
     }
@@ -181,8 +227,29 @@ namespace Glubglub
     {
         public Stoplicht() : base()
         {
-            karakter = '-';
+            karakter = 's';
 
+        }
+    }
+
+    class Zebrapad : Statisch
+    {
+        public Zebrapad() : base()
+        {
+            karakter = '*';
+
+        }
+    }
+
+    public class Employee
+    {
+        public string name;
+        public int no;
+
+        public Employee(string name, int no)
+        {
+            this.name = name;
+            this.no = no;
         }
     }
 
