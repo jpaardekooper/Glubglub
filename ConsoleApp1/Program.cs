@@ -11,6 +11,7 @@ namespace Glubglub
             Voorangsbord voorrang = new Voorangsbord();
             Stoplicht stoplicht = new Stoplicht();
 
+          
             Console.WriteLine("test voorrang" + voorrang.karakter);
             Console.WriteLine("test stoplicht" + stoplicht.karakter);
 
@@ -29,13 +30,11 @@ namespace Glubglub
 
             // Two-dimensional array.
             // The first number indicates the number of columns, the second is the number of rows
-            //grid 1
-            char[,] grid = new char[20, 21];
+   
+            object[,] grid = new object[20, 21];
 
             grid[10, 10] = '1'; // center  
 
-    
-            //grid 2
 
             //filling grid
             for (int i = 1; i < 20; i++) // fourth row
