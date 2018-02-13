@@ -81,7 +81,7 @@ namespace Glubglub
 
 
 
-            Employee[,] empArray = new Employee[11, 10];
+            Employee[,] empArray = new Employee[10, 10];
 
             empArray[1, 3] = new Employee("S", 3);
             empArray[4, 1] = new Employee("A", 9);
@@ -89,29 +89,37 @@ namespace Glubglub
             Console.WriteLine("empArray.Rank (number of dimensions) = " + empArray.Rank);
             Console.WriteLine("empArray.Length (number of elements) = " + empArray.Length);
 
+            for(int d = 0; d < 10; d++){
+                Console.Write(" ".PadRight(2) + (d+1) );
+
+            }
+            Console.WriteLine();
             for (int x = 0; x < empArray.GetLength(0); x++)
             {
-                Console.Write(x);
+                if (x < 9)
+                {
+                    Console.Write((x+1) + " ".PadRight(3));
+                }
+                else
+                {
+                    Console.Write((x+1) +" ".PadRight(2) );
+                }
+               // Console.Write((x+1) +" ".PadRight(3) );
                 for (int y = 0; y < empArray.GetLength(1); y++)
                 {
                    
 
                     if (empArray[x, y] != null)
                     {
-                        
-                        Console.Write("empArray[" + x + ", " + y + "].name = " + empArray[x, y].name);
-                        Console.Write("empArray[" + x + ", " + y + "].no = " + empArray[x, y].no);
+                        Console.Write("test");
+                       // Console.Write("empArray[" + x + ", " + y + "].name = " + empArray[x, y].name);
+                      //  Console.Write("empArray[" + x + ", " + y + "].no = " + empArray[x, y].no);
                     }
                     else
                     {
-                        if (x == 0)
-                        {
-                            Console.Write(" ".PadLeft(2) + (y+1));
-                        }
-                        else
-                        {
-                            Console.Write("-" + empArray[x, y]);
-                        }
+                      
+                            Console.Write("-".PadRight(2) + empArray[x, y]);
+                     
                        
                     }
                     
