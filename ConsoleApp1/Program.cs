@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Glubglub
 {
@@ -6,14 +7,60 @@ namespace Glubglub
     {
         static void Main(string[] args)
         {
+            //Random rand = new Random();
 
-            Verkeersobject test = new Verkeersobject();
+            List<Verkeersobject> verkeersobjecten = new List<Verkeersobject>
+            {
+             new Moeder(),
+             new Kind(),
+             new Auto(),
+             new Brommer(),
+             new Racefiets(),
+             new Ligfiets(),
+             new Elektrischefiets(),
+             new Stopbord(),
+             new Stoplicht(),
+             new Voorangsbord(),
+             new Workshop(),
+             new Zebrapad(),
+            };
+
+            //Your Array
+            Verkeersobject[] parametersToInput = new Verkeersobject[verkeersobjecten.Count];
+
+            //Filling Your Array from Your List
+            int index = 0;
+            verkeersobjecten.ForEach(e => parametersToInput[index++] = e);
+           
+            for (int i = 0; i < parametersToInput.GetLength(0); i++)
+            {
+                Console.Write(parametersToInput[i].Karakter + " ".PadRight(3));
+            }
+           
+
+            foreach (Verkeersobject v in verkeersobjecten)
+                if (v != null)
+                {
+                    Console.Write(v.Richting);
+                    Console.WriteLine(v.Karakter);
+                }
+                else
+                {
+                    Console.WriteLine("List element has null value.");
+                }
+
+
+            Console.WriteLine(verkeersobjecten[0].Karakter + " test");
+
+
+
+
             Voorangsbord voorrang = new Voorangsbord();
             Stoplicht stoplicht = new Stoplicht();
 
-          
-            Console.WriteLine("test voorrang" + voorrang.karakter);
-            Console.WriteLine("test stoplicht" + stoplicht.karakter);
+
+            Console.WriteLine("test voorrang" + voorrang.Karakter);
+            Console.WriteLine("test stoplicht" + stoplicht.Karakter);
 
             /*
             1.Maak een nieuw project(console) voor de opdracht verkeer. Bewaar deze voor de rest van de UML Practica
@@ -28,101 +75,51 @@ namespace Glubglub
             6.Test handmatig door op plekken in het array elementen te plaatsen en dan te kijken of deze ook verschijnen bij het afdrukken.
             */
 
-            // Two-dimensional array.
-            // The first number indicates the number of columns, the second is the number of rows
-   
-            object[,] grid = new object[21, 20];
 
-            grid[10, 10] = '1'; // center  
+            int randomNummer = Utils.random.Next(0, 20);
+            int listRand = Utils.random.Next(0, 12);
 
-
-            //filling grid
-            for (int j = 1; j < grid.GetLength(0); j++) // fourth row
-            {
-                grid[j, 0] = voorrang.karakter;
-            }
-            //filling grid
-            for (int j = 0; j < grid.GetLength(1); j++) // the fifth row
-            {
-                for (int i = 1; i < grid.GetLength(0); i++) // fourth row
-                {
-                    grid[i, 8] = voorrang.karakter;
-                }
-            }
-
-            //output for the grid
-            for (int j = 0; j < grid.GetLength(0); j++)
-            {              
-                if (j < 10 && j > 0)
-                {
-                    Console.Write(j + " ".PadRight(1));
-                }
-                else
-                {
-                    Console.Write(j);
-                }
-                for (int i = 0; i < grid.GetLength(1); i++)
-                {
-                    if (j == 0)
-                    {
-                        Console.Write(" ".PadLeft(2) + (i + 1));
-                    }
-                    //Verkeers object characters 
-                    else
-                    {
-                        Console.Write(" ".PadLeft(2) + grid[j,i] );
-                    }
-                }
-                Console.WriteLine();
-            }
-
-            Console.WriteLine();
-            Console.WriteLine();
+            Verkeersobject[,] empArray = new Verkeersobject[20, 20];
 
 
-
-            Employee[,] empArray = new Employee[10, 10];
-
-            empArray[1, 3] = new Employee("S", 3);
-            empArray[4, 1] = new Employee("A", 9);
+            empArray[randomNummer, randomNummer] = verkeersobjecten[listRand];
+            empArray[4, 1] = new Verkeersobject();
 
             Console.WriteLine("empArray.Rank (number of dimensions) = " + empArray.Rank);
             Console.WriteLine("empArray.Length (number of elements) = " + empArray.Length);
 
-            for(int d = 0; d < 10; d++){
-                Console.Write(" ".PadRight(2) + (d+1) );
+           
+
+
+            for (int d = 0; d < 20; d++)
+            {
+                Console.Write(" ".PadRight(2) + (d + 1));
 
             }
             Console.WriteLine();
-            for (int x = 0; x < empArray.GetLength(0); x++)
+            for (int x = 0; x < empArray.GetLength(1); x++)
             {
                 if (x < 9)
                 {
-                    Console.Write((x+1) + " ".PadRight(3));
+                    Console.Write((x + 1) + " ".PadRight(3));
                 }
                 else
                 {
-                    Console.Write((x+1) +" ".PadRight(2) );
-                }
-               // Console.Write((x+1) +" ".PadRight(3) );
-                for (int y = 0; y < empArray.GetLength(1); y++)
+                    Console.Write((x + 1) + " ".PadRight(2));
+                }             
+                for (int y = 0; y < empArray.GetLength(0); y++)
                 {
-                   
+
 
                     if (empArray[x, y] != null)
                     {
-                        Console.Write("test");
-                       // Console.Write("empArray[" + x + ", " + y + "].name = " + empArray[x, y].name);
-                      //  Console.Write("empArray[" + x + ", " + y + "].no = " + empArray[x, y].no);
+                      
+                        Console.Write("empArray[" + (x + 1) + ", " + (y + 1) + "].karakter is " + empArray[x, y].Karakter);              
                     }
                     else
                     {
-                      
-                            Console.Write("-".PadRight(2) + empArray[x, y]);
-                     
-                       
+                        Console.Write(empArray[x, y] + "-".PadRight(2) );
                     }
-                    
                 }
                 Console.WriteLine();
             }
@@ -133,24 +130,38 @@ namespace Glubglub
         public static readonly Random random = new Random();
     }
 
+    public class Employee
+    {
+        public string name;
+        public int no;
+
+        public Employee(string name, int no)
+        {
+            this.name = name;
+            this.no = no;
+        }
+    }
+
     public class Verkeersobject
     {
+        public int Richting { get; private set; }
+        public char Karakter { get; set; }
+
         public Verkeersobject()
         {
-            richting = Utils.random.Next(1,4);
+            Richting = Utils.random.Next(1, 4);
+            Karakter = '-';
         }
-        public int richting { get; private set; }
-        public char karakter { get; set; }
     }
 
     class Dynamisch : Verkeersobject
     {
-        public int snelheid { get; set; }
+        public int Snelheid { get; set; }
     }
 
     class Statisch : Verkeersobject
     {
-        public int leeftijd { get; set; }
+        public int Leeftijd { get; set; }
     }
 
     class Moeder : Dynamisch
@@ -219,7 +230,7 @@ namespace Glubglub
     {
         public Stopbord() : base()
         {
-            karakter = 's';
+            Karakter = 's';
         }
 
     }
@@ -227,7 +238,7 @@ namespace Glubglub
     {
         public Voorangsbord() : base()
         {
-            karakter = 'v';
+            Karakter = 'v';
 
         }
     }
@@ -235,32 +246,30 @@ namespace Glubglub
     {
         public Stoplicht() : base()
         {
-            karakter = 's';
+            Karakter = 's';
 
         }
+    }
+
+    class Workshop : Statisch
+    {
+        public Workshop() : base()
+        {
+            Karakter = 'w';
+
+        }
+
     }
 
     class Zebrapad : Statisch
     {
         public Zebrapad() : base()
         {
-            karakter = '*';
+            Karakter = '*';
 
         }
+
     }
-
-    public class Employee
-    {
-        public string name;
-        public int no;
-
-        public Employee(string name, int no)
-        {
-            this.name = name;
-            this.no = no;
-        }
-    }
-
 
 }
 
