@@ -5,142 +5,205 @@ namespace Glubglub
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            //Random rand = new Random();
+            Console.WriteLine("|".PadRight(4) + "-------------------------------" + " ".PadRight(4) + "|");
+            Console.WriteLine("|".PadRight(4) + "Welkom bij Glubglub application" + " ".PadRight(4) + "|");          
+            Console.WriteLine("|".PadRight(4) + "-------------------------------" + " ".PadRight(4) + "|");
+            Console.WriteLine("");
+            Console.WriteLine("1. check if element is available for gridArray[column, row]");
+            Console.WriteLine("2. fill number in for column");
+            int valueColumn = Convert.ToInt32(Console.ReadLine());           
+            Console.WriteLine("3. fill in number for row gridArray[" +valueColumn+ ",row]");
+            int valueRow = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("4. you have selected gridArray[" + valueColumn +","+ valueRow + "]");
 
-            List<Verkeersobject> verkeersobjecten = new List<Verkeersobject>
+          
+
+
+
+            //     Console.Clear();
+            //lijst met alle bestaande objecten 
+            List<Verkeersobject> verkeersobjecten = new List<Verkeersobject>();
+            Verkeersobject Moeder = new Moeder();
+            Verkeersobject Kind = new Kind();
+            Verkeersobject Auto = new Auto();
+            Verkeersobject Brommer = new Brommer();
+            Verkeersobject Racefiets = new Racefiets();
+            Verkeersobject Ligfiets = new Ligfiets();
+            Verkeersobject Elektrischefiets = new Elektrischefiets();
+            Verkeersobject Stopbord = new Stopbord();
+            Verkeersobject Stoplicht = new Stoplicht();
+            Verkeersobject Voorangsbord = new Voorangsbord();
+            Verkeersobject Thuisbasis = new Thuisbasis();
+            Verkeersobject Zebrapad = new Zebrapad();
+
+            //creating all verkeersobjects
+            for (int i = 0; i <= 32; i++)
             {
-             new Moeder(),
-             new Kind(),
-             new Auto(),
-             new Brommer(),
-             new Racefiets(),
-             new Ligfiets(),
-             new Elektrischefiets(),
-             new Stopbord(),
-             new Stoplicht(),
-             new Voorangsbord(),
-             new Workshop(),
-             new Zebrapad(),
-            };
+                //5%
+                if (i > 12)
+                {
+                    verkeersobjecten.Add(Stoplicht);
+                    verkeersobjecten.Add(Brommer);
+                    verkeersobjecten.Add(Voorangsbord);
+                    verkeersobjecten.Add(Moeder);
+                }
+                //3%
+                if (i > 20)
+                {
+                    verkeersobjecten.Add(Stopbord);
+                    verkeersobjecten.Add(Racefiets);
+                    verkeersobjecten.Add(Elektrischefiets);
+                }
+                //2%
+                if (i > 24)
+                {
+                    verkeersobjecten.Add(Zebrapad);
+                    verkeersobjecten.Add(Thuisbasis);
+                    verkeersobjecten.Add(Ligfiets);
+                }
 
-            //Your Array
-            Verkeersobject[] parametersToInput = new Verkeersobject[verkeersobjecten.Count];
-
-            //Filling Your Array from Your List
-            int index = 0;
-            verkeersobjecten.ForEach(e => parametersToInput[index++] = e);
-           
-            for (int i = 0; i < parametersToInput.GetLength(0); i++)
-            {
-                Console.Write(parametersToInput[i].Karakter + " ".PadRight(3));
+                //verkeersobjecten.Add(Racefiets);
+                verkeersobjecten.Add(Auto);
+                verkeersobjecten.Add(Kind);
             }
-           
+
+            /*
+            int z = 0;
+
+            Console.WriteLine();
+            Console.WriteLine("Number\tKarakter\tRichting");
 
             foreach (Verkeersobject v in verkeersobjecten)
                 if (v != null)
                 {
-                    Console.Write(v.Richting);
-                    Console.WriteLine(v.Karakter);
+                    z++;
+                    Console.WriteLine((z) + "\t " + v.Karakter + "\t\t" + v.Richting);
+
                 }
                 else
                 {
                     Console.WriteLine("List element has null value.");
                 }
+                */
 
+            Verkeersobject[,] gridArray = new Verkeersobject[20, 20];
 
-            Console.WriteLine(verkeersobjecten[0].Karakter + " test");
-
-
-
-
-            Voorangsbord voorrang = new Voorangsbord();
-            Stoplicht stoplicht = new Stoplicht();
-
-
-            Console.WriteLine("test voorrang" + voorrang.Karakter);
-            Console.WriteLine("test stoplicht" + stoplicht.Karakter);
-
-            /*
-            1.Maak een nieuw project(console) voor de opdracht verkeer. Bewaar deze voor de rest van de UML Practica
-            2.Programmeer straks het hele diagram uit.Hierbij geldt:
-                a.Je mag voor ieder element zelf bepalen hoe welk karakter erbij hoort.
-                b.Elk element begint met een random kijkrichting(1, 2, 3, 4).Zoek zelf uit hoe je met random getallen werkt.
-                c.Methoden mogen nu leeg blijven.
-            3.Maak in Main een 2D - array van Verkeersobjecten(20x20)
-            4.Schrijf(in de main - klasse) een methode die het array afdrukt met aan de
-            zij-en bovenkant de coördinaten(in mensentaal, dus beginnend bij 1).Lege vakjes(nu nog allemaal) worden weergegeven door ‘_’ Laat het lijken op: 
-            5.Pas de afdrukmethode zo aan dat bij het afdrukken het karakter van het juiste object op het scherm komt, als er zich op die plaats een verkeersobject bevindt.
-            6.Test handmatig door op plekken in het array elementen te plaatsen en dan te kijken of deze ook verschijnen bij het afdrukken.
-            */
-
-
-            int randomNummer = Utils.random.Next(0, 20);
-            int listRand = Utils.random.Next(0, 12);
-
-            Verkeersobject[,] empArray = new Verkeersobject[20, 20];
-
-
-            empArray[randomNummer, randomNummer] = verkeersobjecten[listRand];
-            empArray[4, 1] = new Verkeersobject();
-
-            Console.WriteLine("empArray.Rank (number of dimensions) = " + empArray.Rank);
-            Console.WriteLine("empArray.Length (number of elements) = " + empArray.Length);
-
-           
-
-
-            for (int d = 0; d < 20; d++)
+            for (int fillArray = 0; fillArray < verkeersobjecten.Count; fillArray++)
             {
-                Console.Write(" ".PadRight(2) + (d + 1));
+                int row = Utils.row.Next(0, 20);
+                int column = Utils.column.Next(0, 20);
 
-            }
-            Console.WriteLine();
-            for (int x = 0; x < empArray.GetLength(1); x++)
-            {
-                if (x < 9)
+                gridArray[row, column] = verkeersobjecten[fillArray];
+
+                if (gridArray[valueColumn, valueRow] == gridArray[row, column])
                 {
-                    Console.Write((x + 1) + " ".PadRight(3));
+                //    Console.WriteLine("THIS ITEM IS IN GRID");
+                 //   Console.Write(" karakter is "+ gridArray[row, column].Karakter);
                 }
                 else
                 {
-                    Console.Write((x + 1) + " ".PadRight(2));
-                }             
-                for (int y = 0; y < empArray.GetLength(0); y++)
+                    //Console.Write(0);
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("List.verkeersobjecten (number of created elements): " + verkeersobjecten.Count);
+            Console.WriteLine("empArray.Rank (number of dimensions) = " + gridArray.Rank);
+            Console.WriteLine("empArray.Length (number of elements) = " + gridArray.Length);
+
+            for (int d = 0; d < 20; d++)
+            {
+                if (d == 0)
                 {
+                    Console.Write(" ");
+                }
+                Console.Write("  ".PadRight(2) + (d + 1));
 
+            }
+            Console.WriteLine();
 
-                    if (empArray[x, y] != null)
+            Boolean ja = false;
+
+            // int waarde = 0;
+            //looping through column
+            for (int x = 0; x < gridArray.GetLength(1); x++)
+            {
+                if (x < 9)
+                {
+                    Console.Write((x + 1) + "".PadRight(2));
+                }
+                else
+                {
+                    Console.Write((x + 1) + "".PadRight(1));
+                }
+                //looping through rows
+                for (int y = 0; y < gridArray.GetLength(0); y++)
+                {
+                    if (gridArray[x, y] != null)
                     {
-                      
-                        Console.Write("empArray[" + (x + 1) + ", " + (y + 1) + "].karakter is " + empArray[x, y].Karakter);              
+                        //als we het getal 10 benaderen en het een verkeersobject bevat dan doen, we een spatie extra voor de uitlijning
+                        if (y < 10)
+                        {
+                            Console.Write("  " + gridArray[x, y].Karakter + " ".PadRight(0));
+                        }
+                        else
+                        {
+                            Console.Write(" " + gridArray[x, y].Karakter + " ".PadRight(1));
+                        }
+
+                        if (gridArray[valueColumn, valueRow] == gridArray[x, y])
+                        {
+                            ja = true; 
+                        }
+                        else
+                        {
+                            ja = false;
+                        }
+
+
                     }
                     else
                     {
-                        Console.Write(empArray[x, y] + "-".PadRight(2) );
+                        //als we het getal 10 benaderen en het een geen verkeersobject bevat, dan doen we een spatie extra voor de uitlijning
+                        if (y < 10)
+                        {
+                            Console.Write("  " + gridArray[x, y] + "-" + " ".PadRight(0));
+                        }
+                        else
+                        {
+                            Console.Write(" " + gridArray[x, y] + "-" + " ".PadRight(1));
+                        }
                     }
                 }
                 Console.WriteLine();
             }
+            if (ja)
+            {
+                Console.WriteLine(gridArray[valueColumn, valueRow].Karakter + "   " + ja);
+            }
+            else
+            {
+                Console.WriteLine( "NEEE" + ja);
+                Console.Clear();
+
+            }
+          
+
         }
+
     }
     public static class Utils
     {
         public static readonly Random random = new Random();
+        public static readonly Random column = new Random();
+        public static readonly Random row = new Random();
     }
 
-    public class Employee
-    {
-        public string name;
-        public int no;
 
-        public Employee(string name, int no)
-        {
-            this.name = name;
-            this.no = no;
-        }
-    }
+
+
 
     public class Verkeersobject
     {
@@ -149,7 +212,7 @@ namespace Glubglub
 
         public Verkeersobject()
         {
-            Richting = Utils.random.Next(1, 4);
+            Richting = Utils.random.Next(1, 5);
             Karakter = '-';
         }
     }
@@ -168,7 +231,7 @@ namespace Glubglub
     {
         public Moeder() : base()
         {
-            //doe iets
+            Karakter = 'm';
         }
 
         public void Roepen()
@@ -184,37 +247,49 @@ namespace Glubglub
 
     class Kind : Dynamisch
     {
-
+        public Kind() : base()
+        {
+            Karakter = 'k';
+        }
     }
 
     class Auto : Dynamisch
     {
-
+        public Auto() : base()
+        {
+            Karakter = 'a';
+        }
     }
 
     class Fiets : Dynamisch
     {
-
+        public string Merk { get; set; }
     }
 
     class Brommer : Dynamisch
     {
-
+        public Brommer() : base()
+        {
+            Karakter = 'b';
+        }
     }
     //parent class fiets
     class Ligfiets : Fiets
     {
         public Ligfiets() : base()
         {
-            //doe iets
+            Karakter = 'l';
+            Snelheid = 1;
+            Merk = "Lekker";
         }
+
     }
     //parent class fiets
     class Racefiets : Fiets
     {
         public Racefiets() : base()
         {
-            //doe iets
+            Karakter = 'r';
         }
     }
 
@@ -222,7 +297,7 @@ namespace Glubglub
     {
         public Elektrischefiets() : base()
         {
-            //doe iets
+            Karakter = 'e';
         }
     }
 
@@ -246,16 +321,16 @@ namespace Glubglub
     {
         public Stoplicht() : base()
         {
-            Karakter = 's';
+            Karakter = 'x';
 
         }
     }
 
-    class Workshop : Statisch
+    class Thuisbasis : Statisch
     {
-        public Workshop() : base()
+        public Thuisbasis() : base()
         {
-            Karakter = 'w';
+            Karakter = 't';
 
         }
 
@@ -266,11 +341,8 @@ namespace Glubglub
         public Zebrapad() : base()
         {
             Karakter = '*';
-
         }
-
     }
-
 }
 
 
