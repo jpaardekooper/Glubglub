@@ -212,12 +212,16 @@ namespace Glubglub
                 if (isInArray)
                 {
                     Console.WriteLine(gridArray[valueColumn, valueRow].Karakter + "   " + isInArray);
+                    if(gridArray[valueColumn, valueRow].Karakter == 'm')
+                    {
+                        Console.WriteLine("Ik heb een kind");
+                    }
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine();
-                    Console.WriteLine("gridArray[valueColumn, valueRow] komt er niet in voor probeer opnieuw" + isInArray);
+                    Console.WriteLine();                  
+                    Console.WriteLine("4. you have selected gridArray[" + valueColumn + "," + valueRow + "] komt er niet in voor probeer opnieuw" + isInArray);
                     Console.WriteLine();
                     //      Console.Clear();
 
