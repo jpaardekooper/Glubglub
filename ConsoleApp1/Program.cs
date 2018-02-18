@@ -14,6 +14,7 @@ namespace ConsoleApp3
         static string wall = "#"; //wall
         static string target = "$"; //target
         static string emptyCell = " ";
+        static string monster = "M";
 
         static void Main(string[] args)
         {
@@ -27,7 +28,7 @@ namespace ConsoleApp3
             frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
             frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
             frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", "$", " ", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
-            frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
+            frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", "#", "#", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
             frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
             frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
             frame.Add(new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" });
@@ -52,6 +53,7 @@ namespace ConsoleApp3
             Console.Clear();
             for (int x = 0; x < frame.Count; x++)
             {
+                //the cheat way
                 Console.WriteLine(string.Join("", frame[x]));
             }
         }
@@ -68,14 +70,19 @@ namespace ConsoleApp3
 
         static void moveHero(ConsoleKeyInfo keyInfo)
         {
+            //looping through column
             for (int x = frame.Count - 1; x >= 0; x--)
             {
+                //looping through rows
                 for (int y = 0; y < frame[x].Length; y++)
                 {
+                    //checking where X is
                     if (frame[x][y] == hero)
                     {
+                        //if we press up
                         if (keyInfo.Key == ConsoleKey.UpArrow)
                         {
+                            //if we don't hit the wall we move
                             if ((x - 1) >= 0 && frame[x - 1][y] == emptyCell)
                             {
                                 frame[x][y] = emptyCell;
@@ -92,6 +99,7 @@ namespace ConsoleApp3
                         }
                         else if (keyInfo.Key == ConsoleKey.DownArrow)
                         {
+                            //if we don't hit the wall we move
                             if ((x + 1) <= (frame.Count - 1) && frame[x + 1][y] == emptyCell)
                             {
                                 frame[x][y] = emptyCell;
@@ -108,6 +116,7 @@ namespace ConsoleApp3
                         }
                         else if (keyInfo.Key == ConsoleKey.LeftArrow)
                         {
+                            //if we don't hit the wall we move
                             if ((y - 1) >= 0 && frame[x][y - 1] == emptyCell)
                             {
                                 frame[x][y] = emptyCell;
@@ -124,6 +133,7 @@ namespace ConsoleApp3
                         }
                         else if (keyInfo.Key == ConsoleKey.RightArrow)
                         {
+                            //if we don't hit the wall we move
                             if ((y + 1) <= frame[x].Length - 1 && frame[x][y + 1] == emptyCell)
                             {
                                 frame[x][y] = emptyCell;
@@ -139,7 +149,6 @@ namespace ConsoleApp3
                             }
 
                         }
-
                     }
                 }
             }
