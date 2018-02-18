@@ -8,8 +8,6 @@ namespace Glubglub
 
         static void Main(string[] args)
         {
-          
-
             List<Verkeersobject> verkeersobjecten = new List<Verkeersobject>();
             Verkeersobject Moeder = new Moeder();
             Verkeersobject Kind = new Kind();
@@ -25,7 +23,6 @@ namespace Glubglub
             Verkeersobject Zebrapad = new Zebrapad();
             Verkeersobject Leeg = new Leeg();
 
-         
             //creating all verkeersobjects
             for (int i = 0; i <= 32; i++)
             {
@@ -68,33 +65,22 @@ namespace Glubglub
                 {
                     z++;
                     Console.WriteLine((z) + "\t " + v.Karakter + "\t\t" + v.Richting);
-
                 }
                 else
                 {
                     Console.WriteLine("List element has null value.");
                 }
-                */
+            */
 
             Verkeersobject[,] gridArray = new Verkeersobject[20, 20];
-       
+
 
             for (int fillArray = 0; fillArray < verkeersobjecten.Count; fillArray++)
             {
                 int row = Utils.row.Next(0, 20);
                 int column = Utils.column.Next(0, 20);
-              
-                gridArray[row, column] = verkeersobjecten[fillArray];
 
-             //   if (gridArray[valueColumn, valueRow] == gridArray[row, column])
-         //       {
-                    //    Console.WriteLine("THIS ITEM IS IN GRID");
-                    //   Console.Write(" karakter is "+ gridArray[row, column].Karakter);
-           //     }
-          //      else
-          //      {
-                    //Console.Write(0);
-          //      }
+                gridArray[row, column] = verkeersobjecten[fillArray];  
             }
             Console.WriteLine();
             Console.WriteLine("List.verkeersobjecten (number of created elements): " + verkeersobjecten.Count);
@@ -139,15 +125,6 @@ namespace Glubglub
                         {
                             Console.Write(" " + gridArray[x, y].Karakter + "".PadRight(1));
                         }
-
-                   /*     if (gridArray[valueColumn, valueRow] == gridArray[x, y])
-                        {
-                            isInArray = true;
-                        }
-                        else
-                        {
-                            isInArray = false;
-                        } */
                     }
                     else
                     {
@@ -156,7 +133,7 @@ namespace Glubglub
                         {
                             gridArray[x, y] = Leeg;
                             Console.Write("  " + gridArray[x, y].Karakter + " ".PadRight(0));
-                          //  Console.Write("  " + gridArray[x, y] + "Q" + " ".PadRight(0));
+                            //  Console.Write("  " + gridArray[x, y] + "Q" + " ".PadRight(0));
                         }
                         else
                         {
@@ -168,32 +145,13 @@ namespace Glubglub
                 }
                 Console.WriteLine();
             }
-            /*
-            if (isInArray)
-            {
-                Console.WriteLine(gridArray[valueColumn, valueRow].Karakter + "   " + isInArray);
-                if (gridArray[valueColumn, valueRow].Karakter == 'm')
-                {
-                    Console.WriteLine("Ik heb een kind");
-                }
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine();
-                Console.WriteLine("4. you have selected gridArray[" + valueColumn + "," + valueRow + "] komt er niet in voor probeer opnieuw" + isInArray);
-                Console.WriteLine();
-                //      Console.Clear();
 
-            } */
-
-           
             Console.WriteLine("verkeers object is " + verkeersobjecten[1]);
 
-             int valueColumn = 0;
-             int valueRow = 0;
+            int valueColumn = 0;
+            int valueRow = 0;
             // Boolean isInArray = false;
-            
+
             string signal = "A";      // initialize to neutral
             while (signal != "X")      // X indicates stop
             {
@@ -238,13 +196,19 @@ namespace Glubglub
 
                 // Problem. Take action and then log the problem
                 // and then continue on
-                Console.WriteLine("5. this is in gridArray[" + valueColumn + "," + valueRow + "]   " + gridArray[valueColumn, valueRow].Karakter);
-                Console.WriteLine("{0} -- raise Signal!\n", signal);
 
-                //     Console.Clear();
-                //lijst met alle bestaande objecten 
-           
-            } 
+                if (gridArray[valueColumn, valueRow].Karakter == Moeder.Karakter)
+                {
+                    Console.WriteLine("5. this is in gridArray[" + valueColumn + "," + valueRow + "]   " + gridArray[valueColumn, valueRow].Karakter);
+                    Console.WriteLine("Ik heb een kind");                    
+                }
+                else
+                {
+                    Console.WriteLine("5. this is in gridArray[" + valueColumn + "," + valueRow + "]   " + gridArray[valueColumn, valueRow].Karakter);
+                        //  Console.Clear();
+                }           
+                Console.WriteLine("{0} -- raise Signal!\n", signal);
+            }
         }
 
     }
